@@ -25,11 +25,10 @@ export class Potter {
                 return bestCost;
             }
         }
-        return 0;
+        return -1;
     }
+
     get cost(){
-        let total_cost = 0;
-        total_cost = this.calculateBest(Array.from(this.seriesCount));
-        return total_cost;
+        return this.calculateBest(Array.from(this.seriesCount))
     }
 }
