@@ -1,5 +1,3 @@
-import { ParseSourceFile } from "@angular/compiler";
-
 export class Potter {
     private price = 8;
     private seriesNum = 5;
