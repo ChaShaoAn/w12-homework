@@ -43,4 +43,13 @@ describe('Potter', () => {
     potter.buy(2, 3);
     expect(potter.cost).toBe((8 * 3) * 0.9 + (8 * 2) * 0.95 + 8);
   });
+
+  test('buy (0,2), (1,2), (2,2), (3,1), (4,1)', () => {
+    potter.buy(0, 2);
+    potter.buy(1, 2);
+    potter.buy(2, 2);
+    potter.buy(3, 1);
+    potter.buy(4, 1);
+    expect(potter.cost).toBe((8 * 4) * 0.8 + (8 * 4) * 0.8);
+  });
 });
