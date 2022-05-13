@@ -30,4 +30,17 @@ describe('Potter', () => {
     potter.buy(1, 1);
     expect(potter.cost).toBe((8 * 2) * 0.95);
   });
+
+  test('buy two copies of first book and one copy of second book', () => {
+    potter.buy(0, 2);
+    potter.buy(1, 1);
+    expect(potter.cost).toBe((8 * 2) * 0.95 + 8);
+  });
+  
+  test('buy one copy of first book and two copies of second book and three copies of third book', () => {
+    potter.buy(0, 1);
+    potter.buy(1, 2);
+    potter.buy(2, 3);
+    expect(potter.cost).toBe((8 * 3) * 0.9 + (8 * 2) * 0.95 + 8);
+  });
 });
