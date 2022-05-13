@@ -25,7 +25,7 @@ export class Potter {
                 return bestCost;
             }
         }
-        return -1;
+        return bestCost;
     }
 
     get cost(){
