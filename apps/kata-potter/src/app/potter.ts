@@ -1,3 +1,5 @@
+import { ParseSourceFile } from "@angular/compiler";
+
 export class Potter {
     private price = 8;
     private seriesNum = 5;
@@ -8,11 +10,26 @@ export class Potter {
         this.seriesCount[series] += count;
     }
 
+    calculateBest(tmpSeriesCount: number[]){
+        let bestCost = 100000;
+        let set = 0;
+        tmpSeriesCount = tmpSeriesCount.sort().reverse();
+        for (let i = 0; i < this.seriesNum; i++){
+            if (tmpSeriesCount[i] > 0){
+                tmpSeriesCount[i] --;
+                set ++;
+                bestCost = Math.min(set * this.price * this.discount[set - 1] + this.calculateBest(Array.from(tmpSeriesCount)), bestCost); 
+            }
+            else{
+                if (set == 0) return 0;
+                return bestCost;
+            }
+        }
+        return 0;
+    }
     get cost(){
         let total_cost = 0;
-        for (let i = 0; i < this.seriesNum; i++){
-            total_cost += this.price * this.seriesCount[i];
-        }
+        total_cost = this.calculateBest(Array.from(this.seriesCount));
         return total_cost;
     }
 }
